@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "Pentest Recon Tool",
+  "version": "1.2",
+  "description": "Extracts useful recon info from the active tab with advanced checks.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "Pentest Recon Tool"
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
