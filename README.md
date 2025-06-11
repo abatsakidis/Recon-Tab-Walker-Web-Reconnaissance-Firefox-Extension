@@ -1,5 +1,7 @@
 # Recon Tab Walker – Web Reconnaissance Firefox Extension
 
+![Firefox Extension CI](https://github.com/abatsakidis/Recon-Tab-Walker-Web-Reconnaissance-Firefox-Extension/actions/workflows/ci.yml/badge.svg)
+
 **Recon Tab Walker** is a lightweight, privacy-aware Firefox extension designed to automate passive web reconnaissance and surface-level vulnerability scanning on visited websites. Ideal for penetration testers, bug bounty hunters, and security enthusiasts, this tool runs directly in the browser without external dependencies or intrusive scanning.
 
 ## 🚀 Features
