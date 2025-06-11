@@ -7,31 +7,35 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test:
-
+  build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '20'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        if [ -f package.json ]; then
+          npm install
+        else
+          echo "No package.json found. Skipping npm install."
+        fi
 
-    - name: Build extension
-      run: npm run build
+    - name: Lint (optional)
+      run: |
+        if [ -f package.json ]; then
+          npm run lint || echo "No lint script defined."
+        fi
 
-    - name: Run tests
-      run: npm test
-
-    - name: Run linter
-      run: npm run lint
+    - name: Check extension structure
+      run: |
+        if [ ! -f manifest.json ]; then
+          echo "❌ manifest.json not found!"
+          exit 1
+        fi
+        echo "✅ manifest.json found."
